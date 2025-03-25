@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=0.6">
+    <meta name="description" content="Oxg - VR Modder">
+    <meta property="og:title" content="Oxg">
+    <meta property="og:description" content="VR Modder">
+    <meta property="og:image" content="images/oxg.png">
+    <meta name="theme-color" content="#5d9cff">
+    <title>Oxg</title>
+
+    <link rel="icon" type="image/png" href="images/oxg.png">
+    <link rel="stylesheet" type="text/css" href="css/bio3.css">
+    <link href="https://fonts.googleapis.com/css2?family=GreycliffCF&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+    <style>
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            display: none;
+        }
+
+        .overlay-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            z-index: 1000;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .overlay-button {
+            background: #5d9cff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .overlay-button:hover {
+            background: #4a8bd8;
+        }
+
+        .profile {
+            transition: backdrop-filter 0.4s ease !important;
+            box-shadow: 4px 4px 9px 2px rgb(0, 0, 0);
+        }
+
+        .link svg {
+            color: #ffffff !important;
+            fill: #ffffff !important;
+            filter: drop-shadow(0px 0px 4px #ffffff) !important;
+        }
+
+        .displayname,
+        .views-text {
+            color: #ffffff !important;
+        }
+
+        .breath {
+            background: linear-gradient(90deg, #000000 30%, 50%, #000000 70%);
+            background-size: 200%;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: breathing 3s linear infinite;
+        }
+
+        @keyframes breathing {
+            0% {
+                background-position: 150%;
+            }
+
+            100% {
+                background-position: -50%;
+            }
+        }
+    </style>
+</head>
+
+<body onload="document.body.style.opacity='1'" style="opacity: 1;">
+    <div id="overlay" class="overlay-screen" onclick="enterSite()">
+        <p>Click Anywhere To View</p>
+    </div>
+
+    <video id="background-video" loop muted>
+        <source src="images/bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="particles-js" class="particles-js"></div>
+    <audio id="soundthing" src="audio/sigma.mp3" preload="auto" loop></audio>
+
+    <div class="outer" style="background-image: url('images/bg.png');">
+        <div class="overlay"></div>
+
+        <div class="main-container" style="top: 50%; opacity: 1;">
+            <div class="profile" id="profile" style="background-image: linear-gradient(360deg, rgba(75, 0, 130, 0.8), rgba(0, 0, 0, 0.8)); backdrop-filter: blur(0px);">
+                <img class="pic" src="images/oxg.png" alt="Oxg Profile Picture">
+                <p class="displayname">oxg</p>
+                <p class="description typewriter" id="bio">Android Exploiter<br>30k+</p>
+
+                <div class="links">
+                    <div class="link discordUser" title="JOIN NOW!" onclick="window.open('https://discord.gg/vrcheats', '_blank');">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                            <path d="M524.5 69.8a1.5 1.5 0 0 0 -.8-.7A485.1 485.1 0 0 0 404.1 32a1.8 1.8 0 0 0 -1.9 .9 337.5 337.5 0 0 0 -14.9 30.6 447.8 447.8 0 0 0 -134.4 0 309.5 309.5 0 0 0 -15.1-30.6 1.9 1.9 0 0 0 -1.9-.9A483.7 483.7 0 0 0 116.1 69.1a1.7 1.7 0 0 0 -.8 .7C39.1 183.7 18.2 294.7 28.4 404.4a2 2 0 0 0 .8 1.4A487.7 487.7 0 0 0 176 479.9a1.9 1.9 0 0 0 2.1-.7A348.2 348.2 0 0 0 208.1 430.4a1.9 1.9 0 0 0 -1-2.6 321.2 321.2 0 0 1 -45.9-21.9 1.9 1.9 0 0 1 -.2-3.1c3.1-2.3 6.2-4.7 9.1-7.1a1.8 1.8 0 0 1 1.9-.3c96.2 43.9 200.4 43.9 295.5 0a1.8 1.8 0 0 1 1.9 .2c2.9 2.4 6 4.9 9.1 7.2a1.9 1.9 0 0 1 -.2 3.1 301.4 301.4 0 0 1 -45.9 21.8 1.9 1.9 0 0 0 -1 2.6 391.1 391.1 0 0 0 30 48.8 1.9 1.9 0 0 0 2.1 .7A486 486 0 0 0 610.7 405.7a1.9 1.9 0 0 0 .8-1.4C623.7 277.6 590.9 167.5 524.5 69.8z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function enterSite() {
+            var overlay = document.getElementById('overlay');
+            overlay.style.display = 'none';
+
+            var audio = document.getElementById('soundthing');
+            var video = document.getElementById('background-video');
+            video.style.display = "block"; 
+
+            audio.play().catch(err => console.log("Error playing audio:", err));
+            video.play().catch(err => console.log("Error playing video:", err));
+        }
+    </script>
+</body>
+</html>
